@@ -1,0 +1,510 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Sue+Ellen+Francisco');
+
+:root {
+    --bg-color: #222224;
+    --bg-color-2: #19191b;
+    --accent-color: #07abcc;
+    --accent-color-2: aquamarine;
+    --text-color: #fff;
+}
+
+body {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    background-color: var(--bg-color);
+    user-select: none;
+}
+
+a {
+    position: relative;
+    font: inherit;
+    color: inherit;
+    text-decoration: inherit;
+}
+
+a.underline::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    background-color: var(--accent-color-2);
+    visibility: hidden;
+    transition: 200ms ease-in-out;
+}
+
+a.underline:hover::before {
+    width: 100%;
+    visibility: visible;
+}
+
+a.occupy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.overlay-container {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-color);
+    z-index: 3;
+    opacity: 1;
+    transition: opacity 400ms;
+}
+
+.overlay-container .loading-animation-container {
+    width: 32px;
+    height: 32px;
+    border: 8px solid black;
+    border-top: 8px solid var(--accent-color);
+    border-radius: 50%;
+    animation: merryGoRound linear 400ms infinite;
+}
+
+@keyframes merryGoRound {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+header {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+    background-color: var(--bg-color);
+    font-family: 'Architects Daughter', sans-serif;
+    border-bottom: 4px solid var(--accent-color-2);
+    box-shadow: 0 4px 8px black;
+    z-index: 2;
+}
+
+.geekhaven-text-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 34px;
+    text-decoration: underline;
+    text-decoration-color: #fff0;
+    color: #fff0;
+    font-size: 0;
+    text-shadow: -2px 2px 2px black;
+    transition: 200ms;
+    transition-delay: 100ms;
+}
+
+.geekhaven-icon-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 20px;
+    width: 100px;
+    height: 100px;
+}
+
+#geekhaven-icon {
+    vertical-align: middle;
+    width: 72px;
+    height: 72px;
+    transition: 200ms;
+}
+
+#geekhaven-icon:hover {
+    filter: drop-shadow(-4px 4px 2px black);
+    transform: translate(4px, -2px);
+}
+
+.link-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 16px;
+    right: 0;
+    width: 240px;
+    height: 100px;
+    font-size: 22px;
+}
+
+.link-container .link-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 94px;
+    height: 44px;
+    color: var(--accent-color);
+    border: 3px dashed #0000;
+    border-radius: 32px;
+    transition: 200ms;
+    background-color: var(--bg-color);
+}
+
+.link-container .link-button:hover {
+    border: 3px solid var(--accent-color-2);
+    text-shadow: -2px 2px 4px black;
+    box-shadow: -2px 2px 4px black;
+}
+
+.options-container {
+    position: absolute;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    right: 0;
+}
+
+.hamburger {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: opacity 200ms;
+}
+
+.hamburger:hover {
+    opacity: 0.6;
+}
+
+.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+    position: absolute;
+    width: 28px;
+    height: 4px;
+    background-color: var(--accent-color);
+    transition: 400ms cubic-bezier(1, 0.5, 0, 1.25);
+}
+
+.hamburger-inner::before, .hamburger-inner::after {
+    content: "";
+}
+
+.hamburger-inner::before {
+    top: -8px;
+}
+
+.hamburger-inner::after {
+    top: 8px;
+}
+
+.hamburger-toggled .hamburger-inner {
+    background-color: #0000;
+    width: 0;
+}
+
+.hamburger-toggled .hamburger-inner::before,
+.hamburger-toggled .hamburger-inner::after {
+    top: 0;
+    background-color: var(--accent-color-2);
+}
+
+.hamburger-toggled .hamburger-inner::before {
+    transform: translateX(-14px) rotate(45deg);
+}
+
+.hamburger-toggled .hamburger-inner::after {
+    transform: translateX(-14px) rotate(135deg);
+}
+
+.content-wrapper {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 104px);
+    top: 104px;
+    z-index: 1;
+    overflow-x: hidden;
+}
+
+.options-popup-container {
+    position: fixed;
+    width: 0;
+    height: calc(100vh - 104px);
+    transition: 400ms;
+    z-index: 2;
+    background-color: var(--bg-color-2);
+    visibility: hidden;
+}
+
+.options-popup-container.is-active {
+    width: 100%;
+    visibility: visible;
+}
+
+.link-container-2 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 36px;
+    font-family: 'Architects Daughter', sans-serif;
+    width: 0;
+    height: 100%;
+    font-size: 36px;
+    transition: 400ms;
+    background-color: var(--bg-color);
+}
+
+.options-popup-container.is-active .link-container-2 {
+    width: 100%;
+}
+
+.link-container-2 .link-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 50px;
+    color: var(--accent-color);
+    opacity: 0;
+    transition: 200ms;
+}
+
+.options-popup-container.is-active .link-container-2 .link-button {
+    opacity: 1;
+}
+
+.link-container-2 .link-button:hover {
+    text-shadow: -2px 2px 4px black;
+}
+
+.home-information-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: calc(100% - 32px);
+    padding: 16px;
+}
+
+.home-information-container .picture-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    height: 320px;
+    margin-right: 16px;
+    padding-left: calc(50% - 320px - 16px);
+}
+
+.home-information-container .picture-container img {
+    width: 240px;
+    height: 240px;
+    transition: all 200ms ease-out;
+    border-radius: 50%;
+}
+
+.home-information-container .picture-container img:hover {
+    width: 300px;
+    height: 300px;
+    filter: drop-shadow(-4px 4px 2px black);
+}
+
+.home-information-container .description-container {
+    width: 50%;
+}
+
+.home-information-container .description-container .heading {
+    font-size: 64px;
+    font-family: "Sue Ellen Francisco", sans-serif;
+    color: var(--accent-color);
+}
+
+.home-information-container .description-container .description {
+    font-size: 32px;
+    font-family: "Architects Daughter", sans-serif;
+    color: var(--text-color);
+}
+
+.home-information-container .description-container .information {
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+    color: var(--text-color);
+}
+
+.about-information-container, .contact-information-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 32px);
+    padding: 16px;
+}
+
+.about-information-container .information, .contact-information-container .information {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 32px;
+    font-family: "Architects Daughter", sans-serif;
+    color: var(--text-color);
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 136px;
+    padding-bottom: 8px;
+}
+
+.contact-info-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+    height: 100px;
+}
+
+.contact-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid var(--accent-color-2);
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    transition: 100ms;
+    transition-delay: 40ms;
+}
+
+.contact-icon svg {
+    vertical-align: middle;
+    fill: var(--accent-color);
+    width: 40px;
+    height: 40px;
+    transition: 200ms;
+}
+
+.contact-icon:not(.facebook-icon-container):hover {
+    filter: drop-shadow(-4px 4px 2px black);
+    transform: translate(4px, -2px);
+}
+
+.facebook-icon-container:hover {
+    animation: headShake ease-in-out 400ms none;
+}
+
+.facebook-icon-container:hover svg {
+    fill: crimson;
+}
+
+@keyframes headShake {
+    0% {
+        transform: translateX(0);
+    }
+
+    12.5% {
+        transform: translateX(-6px);
+    }
+
+    37.5% {
+        transform: translateX(5px);
+    }
+
+    62.5% {
+        transform: translateX(-3px);
+    }
+
+    87.5% {
+        transform: translateX(2px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.made-by-marker-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-color);
+    width: 100%;
+    height: 36px;
+    text-shadow: 0 4px 4px black;
+    text-decoration: underline;
+    letter-spacing: 6px;
+}
+
+/* media queries */
+
+@media only screen and (max-width: 660px) {
+    * {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .eye-container {
+        display: none;
+    }
+
+    /* hide the links */
+    header .link-container {
+        display: none;
+    }
+
+    /* show a menu button */
+    .options-container {
+        display: flex;
+    }
+
+    .home-information-container, .about-information-container, .contact-information-container{
+        flex-direction: column;
+        padding-bottom: 64px;
+    }
+
+    .home-information-container .picture-container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .home-information-container .picture-container img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .home-information-container .description-container {
+        width: 100%;
+    }
+
+    footer {
+        position: static;
+        zoom: 0.75;
+    }
+}
